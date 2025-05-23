@@ -2,23 +2,25 @@
 
 # Files Changed for Compile SQL Feature Implementation
 
-## 1. [src/dbt_mcp/semantic_layer/client.py](cci:7://file:///Users/stephendowling/Documents/Repos/dbt-cloud-mcp/dbt-mcp/src/dbt_mcp/semantic_layer/client.py:0:0-0:0)
-- Added the [compile_sql](https://github.com/Stevedow99/dbt-mcp-sd-fork/blob/main/dbt-mcp/src/dbt_mcp/semantic_layer/client.py:172:4-207:37) method to the [SemanticLayerFetcher](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:21:0-252:53) class
-- Initially tried using GraphQL, then updated to use the SDK's direct [compile_sql](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:172:4-207:37) method
-- Implemented proper error handling and parameter conversion
+## 1. `src/dbt_mcp/semantic_layer/client.py`
+- **Added** the `compile_sql` method to the `SemanticLayerFetcher` class  
+  ([lines 172–207](https://github.com/Stevedow99/dbt-mcp-sd-fork/blob/main/src/dbt_mcp/semantic_layer/client.py#L172-L207)).  
+- **Switched** from a GraphQL query to the SDK’s direct `compile_sql` call.  
+- **Implemented** error handling and parameter conversion.
 
 ## 2. `src/dbt_mcp/semantic_layer/tools.py`
-- Added a new [compile_sql](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:172:4-207:37) tool function to the `register_sl_tools` function
-- Configured it to call the [compile_sql](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:172:4-207:37) method of the [SemanticLayerFetcher](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:21:0-252:53)
-- Added proper timing and logging
+- **Registered** a new `compile_sql` tool in the `register_sl_tools` function  
+  ([view file](https://github.com/Stevedow99/dbt-mcp-sd-fork/blob/main/src/dbt_mcp/semantic_layer/tools.py)).  
+- **Configured** it to invoke `SemanticLayerFetcher.compile_sql`.  
+- **Added** timing and logging around the tool call.
 
 ## 3. `src/dbt_mcp/semantic_layer/gql/gql.py`
-- Initially added a `compileSql` GraphQL query to the `GRAPHQL_QUERIES` dictionary
-- Later removed it when we switched to using the SDK's direct method
+- **Added** a `compileSql` entry to the `GRAPHQL_QUERIES` dictionary.  
+- **Removed** the GraphQL query after migrating to the SDK method.
 
 ## 4. `src/dbt_mcp/prompts/semantic_layer/compile_sql.md`
-- Created a new prompt file with documentation for the [compile_sql](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:172:4-207:37) tool
-- Included examples and explanation of how to use the tool
+- **Created** a prompt file documenting how to use the `compile_sql` tool  
+  ([view file](https://github.com/Stevedow99/dbt-mcp-sd-fork/blob/main/src/dbt_mcp/prompts/semantic_layer/compile_sql.md)).
 
 
 
