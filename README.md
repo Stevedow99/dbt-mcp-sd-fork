@@ -3,7 +3,7 @@
 # Files Changed for Compile SQL Feature Implementation
 
 ## 1. [src/dbt_mcp/semantic_layer/client.py](cci:7://file:///Users/stephendowling/Documents/Repos/dbt-cloud-mcp/dbt-mcp/src/dbt_mcp/semantic_layer/client.py:0:0-0:0)
-- Added the [compile_sql](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:172:4-207:37) method to the [SemanticLayerFetcher](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:21:0-252:53) class
+- Added the [compile_sql](https://github.com/Stevedow99/dbt-mcp-sd-fork/blob/main/dbt-mcp/src/dbt_mcp/semantic_layer/client.py:172:4-207:37) method to the [SemanticLayerFetcher](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:21:0-252:53) class
 - Initially tried using GraphQL, then updated to use the SDK's direct [compile_sql](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:172:4-207:37) method
 - Implemented proper error handling and parameter conversion
 
