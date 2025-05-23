@@ -67,3 +67,17 @@ def register_sl_tools(dbt_mcp: FastMCP, config: SemanticLayerConfig) -> None:
             return result.result
         else:
             return result.error
+            
+    @dbt_mcp.tool(description="Get compiled SQL for metrics from the dbt Semantic Layer without executing the query")
+    def compile_sql(
+        metrics: list[str],
+        group_by: list[GroupByParam] | None = None,
+    ) -> str:
+        start_time = time()
+        result = semantic_layer_fetcher.compile_sql(
+            metrics=metrics,
+            group_by=group_by,
+        )
+        end_time = time()
+        logger.info(f"compile_sql took {end_time - start_time} seconds")
+        return result or "Error: Failed to compile SQL"

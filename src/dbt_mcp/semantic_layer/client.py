@@ -170,6 +170,43 @@ class SemanticLayerFetcher:
         else:
             return QueryMetricsError(error=str(query_error))
 
+    def compile_sql(
+        self,
+        metrics: list[str],
+        group_by: list[GroupByParam] | None = None,
+    ) -> str | None:
+        try:
+            validation_error = self.validate_query_metrics_params(
+                metrics=metrics,
+                group_by=group_by,
+            )
+            if validation_error:
+                return f"Error: {validation_error}"
+                
+            # Use the correct compile_sql method directly from the client
+            # This is based on the example from dbt-labs repository
+            try:
+                with self.sl_client.session():
+                    # Convert GroupByParam objects to strings if needed
+                    group_by_params = []
+                    if group_by:
+                        for g in group_by:
+                            if hasattr(g, 'name'):
+                                group_by_params.append(g.name)
+                            else:
+                                group_by_params.append(g)
+                    
+                    # Use the direct compile_sql method
+                    sql = self.sl_client.compile_sql(
+                        metrics=metrics,
+                        group_by=group_by_params,
+                    )
+                    return sql
+            except Exception as inner_e:
+                return f"Error compiling SQL: {str(inner_e)}"
+        except Exception as e:
+            return f"Error: {str(e)}"
+    
     def query_metrics(
         self,
         metrics: list[str],
