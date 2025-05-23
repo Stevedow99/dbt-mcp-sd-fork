@@ -1,4 +1,27 @@
-# dbt MCP Server
+# dbt MCP Server (SD Changes)
+
+# Files Changed for Compile SQL Feature Implementation
+
+## 1. [src/dbt_mcp/semantic_layer/client.py](cci:7://file:///Users/stephendowling/Documents/Repos/dbt-cloud-mcp/dbt-mcp/src/dbt_mcp/semantic_layer/client.py:0:0-0:0)
+- Added the [compile_sql](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:172:4-207:37) method to the [SemanticLayerFetcher](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:21:0-252:53) class
+- Initially tried using GraphQL, then updated to use the SDK's direct [compile_sql](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:172:4-207:37) method
+- Implemented proper error handling and parameter conversion
+
+## 2. `src/dbt_mcp/semantic_layer/tools.py`
+- Added a new [compile_sql](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:172:4-207:37) tool function to the `register_sl_tools` function
+- Configured it to call the [compile_sql](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:172:4-207:37) method of the [SemanticLayerFetcher](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:21:0-252:53)
+- Added proper timing and logging
+
+## 3. `src/dbt_mcp/semantic_layer/gql/gql.py`
+- Initially added a `compileSql` GraphQL query to the `GRAPHQL_QUERIES` dictionary
+- Later removed it when we switched to using the SDK's direct method
+
+## 4. `src/dbt_mcp/prompts/semantic_layer/compile_sql.md`
+- Created a new prompt file with documentation for the [compile_sql](./dbt-mcp/src/dbt_mcp/semantic_layer/client.py:172:4-207:37) tool
+- Included examples and explanation of how to use the tool
+
+
+
 
 This MCP (Model Context Protocol) server provides tools to interact with dbt. Read [this](https://docs.getdbt.com/blog/introducing-dbt-mcp-server) blog to learn more.
 
